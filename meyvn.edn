@@ -1,0 +1,35 @@
+{:pom {:group-id "foo"
+       :artifact-id "bar"
+       :version "0.1.0"
+       :name "bar"}
+ :packaging {:uberjar
+             {:enabled true
+              :build-properties {:main-class "bar.core"}
+              :excludes {:artifacts ["org.clojure:google-closure-library" "com.google.javascript:closure-compiler"]
+                         :filters ["META-INF/*.SF" "META-INF/*.DSA" "META-INF/*.RSA"]}
+              :include-source false
+              :obfuscation {:enabled false}
+              :graalvm {:enabled false
+                        :with-https false
+                        :bin-name ""}
+              :bytecoder {:enabled true
+                          :backend "wasm"
+                          :enable-exception-handling "false"
+                          :optimization-level "ALL"
+                          :debug-output "false"
+                          :file-name-prefix "bytecoder"
+                          :wasm-initial-pages "512"
+                          :wasm-maximum-pages "1024"
+                          :minify-compile-result "true"
+                          :prefer-stackifier "false"
+                          :register-allocator "linear"
+                          :additional-classes-to-link ""
+                          :llvm-optimization-level "O2"}}
+             :jar {:enabled false
+                   :remote-repository {:id "clojars"
+                                       :url "https://clojars.org/repo"}}}
+ :interactive {:enabled true
+               :reload-on-save true
+               :tools-deps-alias :repl
+               :repl-port :auto
+               :repl-host "127.0.0.1"}}
